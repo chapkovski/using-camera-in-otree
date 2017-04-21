@@ -1,0 +1,58 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+{% load humanize %}
+
+{% block title %}
+    Canvas
+{% endblock %}
+
+{% block content %}
+
+    <p>
+      My Canvas::::
+    </p>
+    <canvas id="myCanvas" width="200" height="100" style="border:1px solid #d3d3d3;">
+    Your browser does not support the HTML5 canvas tag.</canvas>
+<tr>
+    <th><label for="id_testimage">Filkina cartinka:</label></th>
+    <td>
+
+
+        Currently: <a target="_blank" href="pic_folder/None/no-img.jpg">pic_folder/None/no-img.jpg</a>
+<br />
+Change:
+{{ form.testimage.errors }} <br>
+<input type="hidden" name="testimage" required id="id_testimage" class="form-control"
+>
+
+
+
+    </td>
+</tr>
+
+
+    {% next_button %}
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+ctx.beginPath();
+ctx.arc(95,50,40,0,2*Math.PI);
+ctx.stroke();
+</script>
+
+
+<script>
+var canvas = document.getElementById('myCanvas');
+var dataURL = canvas.toDataURL("image/png");
+document.getElementById('id_testimage').value = dataURL;
+console.log(dataURL);
+</script>
+
+{% endblock %}
+{% block styles %}
+
+{% endblock %}

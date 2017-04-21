@@ -1,0 +1,70 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+{% load humanize %}
+
+{% block title %}
+    Punishment
+{% endblock %}
+
+{% block content %}
+
+    <p>
+      Please take your decision:
+    </p>
+    <div id="my_camera" style="width:320px; height:240px;"></div>
+    <div id="my_result"></div>
+
+{{ form.testimage.errors }}
+<input type="hidden" name="testimage" required id="id_testimage" class="form-control"
+>
+    {% next_button %}
+
+{% endblock %}
+
+{% block scripts %}
+<script src='{% static "image_upload/newcamera/webcam.js" %}' type="text/javascript"></script>
+<!-- <script src='{% static "image_upload/newcamera/webcam.swf" %}' type="text/javascript"></script> -->
+
+
+
+
+<script language="JavaScript">
+  Webcam.attach( '#my_camera' );
+
+  function take_snapshot() {
+    Webcam.snap( function(data_uri) {
+      document.getElementById('my_result').innerHTML = '<img src="'+data_uri+'"/>';
+      document.getElementById('id_testimage').value = data_uri;
+    } );
+  }
+</script>
+
+<a href="javascript:void(take_snapshot())">Take Snapshot</a>
+</script>
+<script type="text/javascript">
+
+
+$( "form.form" )
+    .attr( "enctype", "multipart/form-data" )
+    .attr( "encoding", "multipart/form-data" )
+;
+
+</script>
+<script>
+// var canvas = document.getElementById('my_result');
+// var dataURL = canvas.toDataURL("image/png");
+// document.getElementById('id_testimage').value = dataURL;
+// console.log(dataURL);
+</script>
+
+{% endblock %}
+{% block styles %}
+<style>
+  body { font-family: Helvetica, sans-serif; }
+  h2, h3 { margin-top:0; }
+  form { margin-top: 15px; }
+  form > input { margin-right: 15px; }
+  #results { float:right; margin:20px; padding:20px; border:1px solid; background:#ccc; }
+
+</style>
+{% endblock %}
