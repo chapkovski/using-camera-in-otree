@@ -1,0 +1,30 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+{% load humanize %}
+
+{% block title %}
+    Canvas
+{% endblock %}
+
+{% block content %}
+<p>MEDIA URL: {{MEDIA_URL}}</p>
+<p>MEDIA ROOT: {{MEDIA_ROOT}}</p>
+<p>STATIC ROOT: {{STATIC_ROOT}}</p>
+    <p>
+      My Canvas::::
+    </p>
+
+    <img src="{% static myphoto %}"/>
+
+
+    {% next_button %}
+
+{% endblock %}
+
+{% block scripts %}
+
+
+{% endblock %}
+{% block styles %}
+
+{% endblock %}
