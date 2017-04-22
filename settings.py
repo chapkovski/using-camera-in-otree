@@ -7,30 +7,9 @@ from boto.mturk import qualification
 import otree.settings
 
 # USE_THOUSAND_SEPARATOR = True
-# ROOT_URLCONF = 'urls'
+ROOT_URLCONF = 'urls'
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'image_upload', 'media')
-# MEDIA_URL = '/image_upload/media/'
-# ENV_PATH = os.path.abspath(os.path.dirname(__file__))
 
-
-# TEMPLATE_CONTEXT_PROCESSORS = [
-#     "django.contrib.auth.context_processors.auth",
-#     "django.core.context_processors.debug",
-#     "django.core.context_processors.i18n",
-#     "django.core.context_processors.media",
-#     "django.core.context_processors.request",
-#     "django.contrib.messages.context_processors.messages",
-#
-#     "staticfiles.context_processors.static",
-#
-#     "pinax.core.context_processors.pinax_settings",
-#
-#     "pinax.apps.account.context_processors.account",
-#
-#     "notification.context_processors.notification",
-#     "announcements.context_processors.site_wide_announcements",
-# ]
 
 # the environment variable OTREE_PRODUCTION controls whether Django runs in
 # DEBUG mode. If OTREE_PRODUCTION==1, then DEBUG=False
@@ -39,7 +18,16 @@ if environ.get('OTREE_PRODUCTION') not in {None, '', '0'}:
 else:
     DEBUG = True
 
-
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        # 'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            # ... some options here ...
+        },
+    },
+]
 ADMIN_USERNAME = 'admin'
 
 # for security, best to set admin password in an environment variable
@@ -88,19 +76,7 @@ LANGUAGE_CODE = 'en'
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
 INSTALLED_APPS = ['otree',
                   'django.contrib.humanize',]
-#
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, 'static'),
-# )
-# STATICFILES_FINDERS = (
-#     'django.contrib.staticfiles.finders.FileSystemFinder',
-#     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-# )
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static_debug')
-# STATIC_URL = '/static/'
-#
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# MEDIA_URL = '/media/'
+
 
 
 DEMO_PAGE_INTRO_TEXT = """

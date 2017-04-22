@@ -7,10 +7,10 @@ import random
 
 
 
-author = 'Your name here'
+author = 'Philipp Chapkovski, UZH'
 
 doc = """
-Your app description
+The basic usage of camera in oTree
 """
 
 
@@ -29,5 +29,5 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    my_image = django_models.ImageField(upload_to = 'pic_folder/', default = 'pic_folder/None/no-img.jpg')
     testimage = django_models.TextField()
+    delete_photo = models.BooleanField()

@@ -1,0 +1,9 @@
+{% load staticfiles otree_tags %}
+{% for image in images %}
+
+    {% with "image_upload/"|add:image as myimg %}
+        <img src="{% static myimg %}"/>
+    {% endwith %}
+
+
+{% endfor %}

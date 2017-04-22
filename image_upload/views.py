@@ -9,16 +9,10 @@ dataUrlPattern = re.compile('data:image/(png|jpeg);base64,(.*)$')
 from django.contrib.staticfiles.templatetags.staticfiles import static
 
 
-
-
-
-
 class UploadingImagePage(Page):
     form_model = models.Player
     form_fields = ['testimage']
 
-    def vars_for_template(self):
-        return {'myvar':(100000)}
 
     def before_next_page(self):
         ImageData = self.request.POST.get('testimage')
@@ -39,8 +33,18 @@ class UploadingImagePage(Page):
         f.close()
 
 class Results(Page):
+    form_model = models.Player
+    form_fields = ['delete_photo']
+
     def vars_for_template(self):
         return {'myphoto':'image_upload/photo{}.jpg'.format(self.participant.code)}
+
+    def before_next_page(self):
+        if self.player.delete_photo:
+            BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+            path_to_file = os.path.join(BASE_DIR, 'static/image_upload/photo{}.jpg'.format(self.participant.code))
+            os.remove(path_to_file)
+
 
 page_sequence = [
     UploadingImagePage,
