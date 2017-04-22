@@ -123,7 +123,7 @@ SESSION_CONFIGS = [
 
     {
         'name': 'image_upload',
-        'display_name': 'uploading image example',
+        'display_name': 'using camera in oTree',
         'num_demo_participants': 1,
         'app_sequence': ['image_upload'],
     },
