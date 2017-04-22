@@ -9,7 +9,7 @@ from django.conf.urls.static import static
 # ]
 
 # if settings.DEBUG is True:
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 # urlpatterns.append(url(r'^my_view/$', 'my_module.my_view'))
