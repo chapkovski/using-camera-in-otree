@@ -1,9 +1,6 @@
 import os
 from os import environ
 
-import dj_database_url
-from boto.mturk import qualification
-
 import otree.settings
 
 # USE_THOUSAND_SEPARATOR = True
@@ -17,17 +14,7 @@ if environ.get('OTREE_PRODUCTION') not in {None, '', '0'}:
     DEBUG = False
 else:
     DEBUG = True
-
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # 'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            # ... some options here ...
-        },
-    },
-]
+ 
 ADMIN_USERNAME = 'admin'
 
 # for security, best to set admin password in an environment variable
@@ -35,28 +22,7 @@ ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')
 
 # don't share this with anybody.
 SECRET_KEY = '=iwzuh2hjvld!8kpb674(-@wk)r$_i=kmp%-t^jg0c8=zv+_fb'
-
-# To use a database other than sqlite,
-# set the DATABASE_URL environment variable.
-# Examples:
-# postgres://USER:PASSWORD@HOST:PORT/NAME
-# mysql://USER:PASSWORD@HOST:PORT/NAME
-
-DATABASES = {
-    'default': dj_database_url.config(
-        default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
-    )
-}
-
-# AUTH_LEVEL:
-# If you are launching a study and want visitors to only be able to
-# play your app if you provided them with a start link, set the
-# environment variable OTREE_AUTH_LEVEL to STUDY.
-# If you would like to put your site online in public demo mode where
-# anybody can play a demo version of your game, set OTREE_AUTH_LEVEL
-# to DEMO. This will allow people to play in demo mode, but not access
-# the full admin interface.
-
+ 
 AUTH_LEVEL = environ.get('OTREE_AUTH_LEVEL')
 
 # setting for integration with AWS Mturk
@@ -83,39 +49,11 @@ DEMO_PAGE_INTRO_TEXT = """
 oTree games
 """
 
-# from here on are qualifications requirements for workers
-# see description for requirements on Amazon Mechanical Turk website:
-# http://docs.aws.amazon.com/AWSMechTurk/latest/AWSMturkAPI/ApiReference_QualificationRequirementDataStructureArticle.html
-# and also in docs for boto:
-# https://boto.readthedocs.org/en/latest/ref/mturk.html?highlight=mturk#module-boto.mturk.qualification
-
-mturk_hit_settings = {
-    'keywords': ['easy', 'bonus', 'choice', 'study'],
-    'title': 'Title for your experiment',
-    'description': 'Description for your experiment',
-    'frame_height': 500,
-    'preview_template': 'global/MTurkPreview.html',
-    'minutes_allotted_per_assignment': 60,
-    'expiration_hours': 7*24,  # 7 days
-    # 'grant_qualification_id': 'YOUR_QUALIFICATION_ID_HERE',# to prevent retakes
-    'qualification_requirements': [
-        # qualification.LocaleRequirement("EqualTo", "US"),
-        # qualification.PercentAssignmentsApprovedRequirement("GreaterThanOrEqualTo", 50),
-        # qualification.NumberHitsApprovedRequirement("GreaterThanOrEqualTo", 5),
-        # qualification.Requirement('YOUR_QUALIFICATION_ID_HERE', 'DoesNotExist')
-    ]
-}
-
-# if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
-# in SESSION_CONFIGS, except those that explicitly override it.
-# the session config can be accessed from methods in your apps as self.session.config,
-# e.g. self.session.config['participation_fee']
-
 SESSION_CONFIG_DEFAULTS = {
     'real_world_currency_per_point': 0.000,
     'participation_fee': 0.00,
     'doc': "",
-    'mturk_hit_settings': mturk_hit_settings,
+    
 }
 
 
@@ -128,7 +66,3 @@ SESSION_CONFIGS = [
         'app_sequence': ['image_upload'],
     },
 ]
-
-# anything you put after the below line will override
-# oTree's default settings. Use with caution.
-otree.settings.augment_settings(globals())
