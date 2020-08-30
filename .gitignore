@@ -11,7 +11,3 @@ __pycache__/
 *.py[cod]
 .DS_Store
 *.otreezip
-gettierfront/node_modules/
-gettierfront/node_modules
-gettierfront/node_modules/*
-
