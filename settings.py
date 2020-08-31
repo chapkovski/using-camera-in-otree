@@ -1,10 +1,7 @@
 import os
 from os import environ
 
-import otree.settings
 
-# USE_THOUSAND_SEPARATOR = True
-ROOT_URLCONF = 'urls'
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
@@ -14,7 +11,7 @@ if environ.get('OTREE_PRODUCTION') not in {None, '', '0'}:
     DEBUG = False
 else:
     DEBUG = True
- 
+
 ADMIN_USERNAME = 'admin'
 
 # for security, best to set admin password in an environment variable
@@ -22,7 +19,7 @@ ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')
 
 # don't share this with anybody.
 SECRET_KEY = '=iwzuh2hjvld!8kpb674(-@wk)r$_i=kmp%-t^jg0c8=zv+_fb'
- 
+
 AUTH_LEVEL = environ.get('OTREE_AUTH_LEVEL')
 
 # setting for integration with AWS Mturk
@@ -41,8 +38,7 @@ LANGUAGE_CODE = 'en'
 
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
 INSTALLED_APPS = ['otree',
-                  'django.contrib.humanize',]
-
+                  'django.contrib.humanize', ]
 
 
 DEMO_PAGE_INTRO_TEXT = """
@@ -53,7 +49,7 @@ SESSION_CONFIG_DEFAULTS = {
     'real_world_currency_per_point': 0.000,
     'participation_fee': 0.00,
     'doc': "",
-    
+
 }
 
 
