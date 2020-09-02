@@ -3,7 +3,8 @@ from os import environ
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
+MEDIA_ROOT= os.path.join(BASE_DIR, 'media')
+MEDIA_URL='media/'
 
 # the environment variable OTREE_PRODUCTION controls whether Django runs in
 # DEBUG mode. If OTREE_PRODUCTION==1, then DEBUG=False
@@ -36,7 +37,7 @@ POINTS_DECIMAL_PLACES = 2
 # see: https://docs.djangoproject.com/en/1.9/topics/i18n/#term-language-code
 LANGUAGE_CODE = 'en'
 
-# if an app is included in SESSION_CONFIGS, you don't need to list it here
+EXTENSION_APPS = ['image_upload']
 INSTALLED_APPS = ['otree',
                   'django.contrib.humanize', ]
 

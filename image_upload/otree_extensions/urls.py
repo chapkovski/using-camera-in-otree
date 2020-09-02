@@ -1,6 +1,7 @@
 from django.urls import path, include, re_path
-from first.views import GetCurrentVignette
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
-    path(GetCurrentVignette.url_pattern, GetCurrentVignette.as_view(), name=GetCurrentVignette.url_name),
+    *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 ]

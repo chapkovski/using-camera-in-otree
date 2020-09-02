@@ -1,15 +1,16 @@
 {% extends "global/Page.html" %}
-{% load staticfiles otree_tags %}
-{% load humanize %}
+{% load otree static  humanize %}
+
 
 {% block title %}
     Resulting photo
 {% endblock %}
 
 {% block content %}
+{% get_media_prefix %}{{player.image_info}}.png
+<image src='/{% get_media_prefix %}{{player.image_info}}.png'></image>
 
-
-    <img src="{% static myphoto %}"/>
+ 
 
     <p><b>Would you like to delete this photo?</b></p>
         <div>
