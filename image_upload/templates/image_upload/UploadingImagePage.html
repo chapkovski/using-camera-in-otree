@@ -1,9 +1,8 @@
-<!doctype html>
-<html>
+{% extends "global/Page.html" %}
+{% load otree static  %}
 
-<head>
-  <title>WebRTC: Still photo capture demo</title>
-  <meta charset='utf-8'>
+{% block styles %}
+
   <style>
     #video {
       border: 1px solid black;
@@ -53,6 +52,9 @@
       width: 760px;
     }
   </style>
+  {% endblock %}
+  {% block scripts %}
+
   <script>
     (function () {
       // The width and height of the captured photo. We will set the
@@ -157,39 +159,32 @@
       window.addEventListener('load', startup, false);
     })();
   </script>
+{% endblock %}
 
-</head>
 
-<body>
-  <form class="otree-form" method="post" role="form" id="form" autocomplete="off">{% csrf_token %}
+{% block content %}
 
-    {% csrf_token %}
-    <button>SUBMIT</button>
     <input type="hidden" name="image_info" required id="id_image_info" class="form-control">
 
     <div class="contentarea">
       <h1>
-        MDN - WebRTC: Still photo capture demo
+        Photo demo
       </h1>
-      <p>
-        This example demonstrates how to set up a media stream using your built-in webcam, fetch an image from that
-        stream, and create a PNG using that image.
-      </p>
+<div class="d-flex flex-row">
       <div class="camera">
         <video id="video">Video stream not available.</video>
         <button id="startbutton">Take photo</button>
       </div>
-      <canvas id="canvas">
-      </canvas>
-      <div class="output">
-        <img id="photo" alt="The screen capture will appear in this box.">
-      </div>
-      <p>
-        Visit our article <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Taking_still_photos">
-          Taking still photos with WebRTC</a> to learn more about the technologies used here.
-      </p>
-    </div>
-  </form>
-</body>
+      
+        <div>
+          <canvas id="canvas">
+          </canvas>
+        </div>
+        <div class="output">
+          <img id="photo" alt="The screen capture will appear in this box.">
+        </div>
 
-</html>
+      </div>
+      <div class='my-3'>   {% next_button %}   </div>
+    </div>
+{% endblock %}

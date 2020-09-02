@@ -1,5 +1,5 @@
 {% extends "global/Page.html" %}
-{% load otree static  humanize %}
+{% load otree static  %}
 
 
 {% block title %}
@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-{% get_media_prefix %}{{player.image_info}}.png
+
 <image src='/{% get_media_prefix %}{{player.image_info}}.png'></image>
 
  
